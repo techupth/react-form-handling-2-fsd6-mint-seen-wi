@@ -1,6 +1,34 @@
+import { useState } from "react";
+
 function ProductForm() {
+  // const [name, SetName] = useState("");
+  // const [image, SetImage] = useState("");
+  // const [price, SetPrice] = useState(0);
+  // const [description, SetDescription] = useState("");
+
+  // hvae 2 solution 1. many state 2. object state
+
+  const [form, setForm] = useState({
+    name: "",
+    image: "",
+    price: 0,
+    description: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // const data = {
+    //   name: name,
+    //   price: price,
+    //   image: image,
+    //   description: description,
+    // };
+
+    alert(JSON.stringify(form));
+  };
+
   return (
-    <form className="post-form">
+    <form className="post-form" onSubmit={handleSubmit}>
       <h1>Create Product Form</h1>
       <div className="input-container">
         <label>
@@ -10,7 +38,10 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            onChange={() => {}}
+            value={form.name}
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, name: e.target.value }));
+            }}
           />
         </label>
       </div>
@@ -22,7 +53,10 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            onChange={() => {}}
+            value={form.image}
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, image: e.target.value }));
+            }}
           />
         </label>
       </div>
@@ -34,7 +68,10 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            onChange={() => {}}
+            value={form.price}
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, price: e.target.value }));
+            }}
           />
         </label>
       </div>
@@ -46,7 +83,10 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            onChange={() => {}}
+            value={form.description}
+            onChange={(e) => {
+              setForm((prev) => ({ ...prev, description: e.target.value }));
+            }}
             rows={4}
             cols={30}
           />
